@@ -13,8 +13,8 @@ SECTIONS {
   .       = . + 0x00001000;
   tos_svc = .;
   /* allocate stack for irq mode     */
-.       = . + 0x00001000;
-tos_irq = .;
+  .       = . + 0x00001000;
+  tos_irq = .;
   /* allocate stack for P1           */
   .       = . + 0x00001000;
   tos_P1  = .;
