@@ -31,7 +31,7 @@ extern uint32_t tos_P1;
 extern void     main_P2();
 extern uint32_t tos_P2;
 
-/* void hilevel_handler_rst( ctx_t* ctx              ) {
+// void hilevel_handler_rst( ctx_t* ctx              ) {
   /* Initialise PCBs representing processes stemming from execution of
    * the two user programs.  Note in each case that
    *
@@ -40,7 +40,7 @@ extern uint32_t tos_P2;
    * - the PC and SP values matche the entry point and top of stack.
    */
 
-/*  memset( &pcb[ 0 ], 0, sizeof( pcb_t ) );
+/* memset( &pcb[ 0 ], 0, sizeof( pcb_t ) );
   pcb[ 0 ].pid      = 1;
   pcb[ 0 ].ctx.cpsr = 0x50;
   pcb[ 0 ].ctx.pc   = ( uint32_t )( &main_P1 );
@@ -51,14 +51,13 @@ extern uint32_t tos_P2;
   pcb[ 1 ].ctx.cpsr = 0x50;
   pcb[ 1 ].ctx.pc   = ( uint32_t )( &main_P2 );
   pcb[ 1 ].ctx.sp   = ( uint32_t )( &tos_P2  );
-*/
   /* Once the PCBs are initialised, we (arbitrarily) select one to be
    * restored (i.e., executed) when the function then returns. */
 
-//  current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
+//current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
-//  return;
-// }
+//return;
+//}
 
 void hilevel_handler_rst( ctx_t* ctx              ) {
   /* Configure the mechanism for interrupt handling by
@@ -115,7 +114,7 @@ switch( id ) {
       scheduler( ctx );
       break;
     }
-    case 0x01 : { // 0x01 => write( fd, x, n )
+    case 0x01 : { // 0x01 => write( fd, x, n ) copy this block into CW2
       int   fd = ( int   )( ctx->gpr[ 0 ] );
       char*  x = ( char* )( ctx->gpr[ 1 ] );
       int    n = ( int   )( ctx->gpr[ 2 ] );
