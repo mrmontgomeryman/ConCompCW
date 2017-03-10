@@ -1,5 +1,34 @@
 #include "hilevel.h"
 
+pcb_t pcb[ 2 ], *current = NULL;
+
+void scheduler( ctx_t* ctx ) {
+  if      ( current == &pcb[ 0 ] ) {
+    memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_1
+    memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+    current = &pcb[ 1 ];
+  }
+  else if ( current == &pcb[ 1 ] ) {
+    memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_2
+    memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_1
+    current = &pcb[ 0 ];
+  }
+
+  return;
+}
+
+extern void     main_P1();
+extern uint32_t tos_P1;
+extern void     main_P2();
+extern uint32_t tos_P2;
+extern void     main_P3();
+extern uint32_t tos_P3;
+extern void     main_P4();
+extern uint32_t tos_P4;
+extern void     main_P5();
+extern uint32_t tos_P5;
+
+
 void hilevel_handler_rst() {
   return;
 }
