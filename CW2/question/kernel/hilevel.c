@@ -17,10 +17,6 @@ void scheduler( ctx_t* ctx ) {
   return;
 }
 
-extern void     main_P1();
-extern uint32_t tos_P1;
-extern void     main_P2();
-extern uint32_t tos_P2;
 extern void     main_P3();
 extern uint32_t tos_P3;
 extern void     main_P4();
@@ -42,14 +38,20 @@ void hilevel_handler_rst( ctx_t* ctx              ) {
    memset( &pcb[ 0 ], 0, sizeof( pcb_t ) );
    pcb[ 0 ].pid      = 1;
    pcb[ 0 ].ctx.cpsr = 0x50;
-   pcb[ 0 ].ctx.pc   = ( uint32_t )( &main_P1 );
-   pcb[ 0 ].ctx.sp   = ( uint32_t )( &tos_P1  );
+   pcb[ 0 ].ctx.pc   = ( uint32_t )( &main_P3 );
+   pcb[ 0 ].ctx.sp   = ( uint32_t )( &tos_P3  );
 
    memset( &pcb[ 1 ], 0, sizeof( pcb_t ) );
    pcb[ 1 ].pid      = 2;
    pcb[ 1 ].ctx.cpsr = 0x50;
-   pcb[ 1 ].ctx.pc   = ( uint32_t )( &main_P2 );
-   pcb[ 1 ].ctx.sp   = ( uint32_t )( &tos_P2  );
+   pcb[ 1 ].ctx.pc   = ( uint32_t )( &main_P4 );
+   pcb[ 1 ].ctx.sp   = ( uint32_t )( &tos_P4  );
+
+   memset( &pcb[ 1 ], 0, sizeof( pcb_t ) );
+   pcb[ 2 ].pid      = 3;
+   pcb[ 2 ].ctx.cpsr = 0x50;
+   pcb[ 2 ].ctx.pc   = ( uint32_t )( &main_P5 );
+   pcb[ 2 ].ctx.sp   = ( uint32_t )( &tos_P5  );
 
    current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
