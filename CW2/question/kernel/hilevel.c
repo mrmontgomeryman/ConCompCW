@@ -4,14 +4,22 @@ pcb_t pcb[ 2 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
   if      ( current == &pcb[ 0 ] ) {
-    memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_1
-    memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_2
-    current = &pcb[ 1 ];
+    memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_4
+    memcpy( &pcb[ 2 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_5
+    memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
+    current = &pcb[ 0 ];
   }
   else if ( current == &pcb[ 1 ] ) {
-    memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_2
-    memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_1
-    current = &pcb[ 0 ];
+    memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
+    memcpy( &pcb[ 2 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_5
+    memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
+    current = &pcb[ 1 ];
+  }
+  else if ( current == &pcb[ 2 ] ) {
+    memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
+    memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_4
+    memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_5
+    current = &pcb[ 2 ];
   }
 
   return;
