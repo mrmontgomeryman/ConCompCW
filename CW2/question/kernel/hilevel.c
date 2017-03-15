@@ -2,7 +2,7 @@
 
 pcb_t pcb[ 2 ], *current = NULL;
 
-void scheduler( ctx_t* ctx ) {
+/* void scheduler( ctx_t* ctx ) {
   if      ( current == &pcb[ 0 ] ) {
     memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_4
     memcpy( &pcb[ 2 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_5
@@ -23,7 +23,7 @@ void scheduler( ctx_t* ctx ) {
   }
 
   return;
-}
+} */
 
 extern void     main_P3();
 extern uint32_t tos_P3;
