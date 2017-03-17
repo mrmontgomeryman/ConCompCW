@@ -15,6 +15,9 @@ SECTIONS {
   /* allocate stack for irq mode     */
   .       = . + 0x00001000;
   tos_irq = .;
+  /* allocate stack for rst mode     */
+  .       = . + 0x00001000;
+  tos_rst = .;
   /* allocate stack for P1           */
   .       = . + 0x00001000;
   tos_P1  = .;
