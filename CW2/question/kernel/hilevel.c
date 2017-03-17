@@ -88,9 +88,9 @@ void hilevel_handler_irq() {
 
   // Step 4: handle the interrupt, then clear (or reset) the source.
 
-  //if( id == GIC_SOURCE_TIMER0 ) {
-    //PL011_putc( UART0, 'T', true ); TIMER0->Timer1IntClr = 0x01;
-  //}
+  if( id == GIC_SOURCE_TIMER0 ) {
+    PL011_putc( UART0, 'T', true ); TIMER0->Timer1IntClr = 0x01;
+  }
 
   // Step 5: write the interrupt identifier to signal we're done.
 
