@@ -9,16 +9,15 @@
  *   can be created, and neither is able to complete.
  */
 
-//pcb_t pcb[ 0 ], *current = NULL;
+pcb_t pcb[ 0 ];
+*current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  pcb_t pcb[ 0 ], *current = NULL;
   if      ( current == &pcb[ 0 ] ) {
     memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_1
     memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_2
     current = &pcb[ 1 ];
   }
-  pcb_t pcb[ 1 ], *current = NULL;
   else if ( current == &pcb[ 1 ] ) {
     memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_2
     memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_1
