@@ -9,7 +9,7 @@
  *   can be created, and neither is able to complete.
  */
 
-pcb_t pcb[ 0 ], *current = NULL;
+//pcb_t pcb[ 0 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
   if      ( current == &pcb[ 0 ] ) {
