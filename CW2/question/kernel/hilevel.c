@@ -1,5 +1,7 @@
 #include "hilevel.h"
 
+pcb_t pcb[ 0 ], *current = NULL;
+pcb_t pcb[ 1 ], *current = NULL;
 pcb_t pcb[ 2 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
