@@ -9,8 +9,7 @@
  *   can be created, and neither is able to complete.
  */
 
-pcb_t pcb[ 0 ];
-*current = NULL;
+pcb_t pcb[ 0 ]; *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
   if      ( current == &pcb[ 0 ] ) {
@@ -64,7 +63,7 @@ void hilevel_handler_rst( ctx_t* ctx              ) {
    pcb[ 1 ].ctx.pc   = ( uint32_t )( &main_P2 );
    pcb[ 1 ].ctx.sp   = ( uint32_t )( &tos_P2  );
 
-   current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
+   //current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
   int_enable_irq();
 
