@@ -68,7 +68,17 @@ void hilevel_handler_rst( ctx_t* ctx              ) {
    *   processor via the IRQ interrupt signal, then
    * - enabling IRQ interrupts.
    */
+   TIMER0->Timer1Load  = 0x00100000; // select period = 2^20 ticks ~= 1 sec
+   TIMER0->Timer1Ctrl  = 0x00000002; // select 32-bit   timer
+   TIMER0->Timer1Ctrl |= 0x00000040; // select periodic timer
+   TIMER0->Timer1Ctrl |= 0x00000020; // enable          timer interrupt
+   TIMER0->Timer1Ctrl |= 0x00000080; // enable          timer
 
+   GICC0->PMR          = 0x000000F0; // unmask all            interrupts
+   GICD0->ISENABLER1  |= 0x00000010; // enable timer          interrupt
+   GICC0->CTLR         = 0x00000001; // enable GIC interface
+   GICD0->CTLR         = 0x00000001; // enable GIC distributor
+   
    memset( &pcb[ 0 ], 0, sizeof( pcb_t ) );
    pcb[ 0 ].pid      = 1;
    pcb[ 0 ].ctx.cpsr = 0x50;
@@ -82,17 +92,6 @@ void hilevel_handler_rst( ctx_t* ctx              ) {
    pcb[ 1 ].ctx.sp   = ( uint32_t )( &tos_P2  );
 
    current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
-
-  TIMER0->Timer1Load  = 0x00100000; // select period = 2^20 ticks ~= 1 sec
-  TIMER0->Timer1Ctrl  = 0x00000002; // select 32-bit   timer
-  TIMER0->Timer1Ctrl |= 0x00000040; // select periodic timer
-  TIMER0->Timer1Ctrl |= 0x00000020; // enable          timer interrupt
-  TIMER0->Timer1Ctrl |= 0x00000080; // enable          timer
-
-  GICC0->PMR          = 0x000000F0; // unmask all            interrupts
-  GICD0->ISENABLER1  |= 0x00000010; // enable timer          interrupt
-  GICC0->CTLR         = 0x00000001; // enable GIC interface
-  GICD0->CTLR         = 0x00000001; // enable GIC distributor
 
   int_enable_irq();
 
