@@ -62,7 +62,7 @@ void hilevel_handler_rst( ctx_t* ctx              ) {
    pcb[ 1 ].ctx.pc   = ( uint32_t )( &main_P2 );
    pcb[ 1 ].ctx.sp   = ( uint32_t )( &tos_P2  );
 
-   current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
+   current = &pcb[ 2 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
   int_enable_irq();
 
