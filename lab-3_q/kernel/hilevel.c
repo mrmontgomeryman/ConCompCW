@@ -9,7 +9,7 @@
  *   can be created, and neither is able to complete.
  */
 
-pcb_t pcb[ 0 ]; *current = NULL;
+pcb_t pcb[ 2 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
   if      ( current == &pcb[ 0 ] ) {
@@ -50,7 +50,6 @@ void hilevel_handler_rst( ctx_t* ctx              ) {
    GICD0->ISENABLER1  |= 0x00000010; // enable timer          interrupt
    GICC0->CTLR         = 0x00000001; // enable GIC interface
    GICD0->CTLR         = 0x00000001; // enable GIC distributor
-
    memset( &pcb[ 0 ], 0, sizeof( pcb_t ) );
    pcb[ 0 ].pid      = 1;
    pcb[ 0 ].ctx.cpsr = 0x50;
