@@ -8,20 +8,17 @@ void scheduler( ctx_t* ctx ) {
     memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
     memcpy( &pcb[ 2 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_5
     memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
-    //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_5
     current = &pcb[ 1 ];
   }
   else if ( current == &pcb[ 1 ]) {
     memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_4
     memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
-    //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_5
     current = &pcb[ 2 ];
   }
   else if ( current == &pcb[ 2 ]) {
     memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_4
     memcpy( &pcb[ 2 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_5
-    //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     current = &pcb[ 0 ];
   }
@@ -79,7 +76,7 @@ void hilevel_handler_rst(  ctx_t* ctx              ) {
    * restored (i.e., executed) when the function then returns.
    */
 
-  //current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
+  current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
   return;
 }
