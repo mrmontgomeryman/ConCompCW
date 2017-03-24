@@ -13,6 +13,7 @@ void scheduler( ctx_t* ctx ) {
 
        int    i;
        char   buf[BUF_SIZE];
+       int    pid;
 
        fork();
        pid = getpid();
