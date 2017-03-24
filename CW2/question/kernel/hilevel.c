@@ -4,7 +4,7 @@
 pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  if (pcb_t pcb [3]) {
+  if (sizeof(pcb_t) == 3) {
   if      ( current == &pcb[ 0 ]) {
     memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
     memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
@@ -22,7 +22,7 @@ void scheduler( ctx_t* ctx ) {
   }
 }
   else {
-    if      ( current == &pcb[ 1 ]) {
+    if      (sizeof(pcb_t) == 3) {
       memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
       memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_4
       current = &pcb[ 2 ];
