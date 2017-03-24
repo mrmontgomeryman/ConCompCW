@@ -5,17 +5,10 @@ pcb_t pcb[ 3 ], *current = NULL;
 void scheduler( ctx_t* ctx ) {
 
   if (fork()) {
-
-  if (pid == 1) {
     memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
-  }
-  else if (pid == 2) {
     memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
-  }
-  else if (pid == 3) {
     memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
-  }
-}
+    }
   else {
     PL011_putc( UART0, 'F', 1);
   }
