@@ -11,7 +11,7 @@ void scheduler( ctx_t* ctx ) {
   /* Start children. */
   for (i = 0; i < n; ++i) {
     if ((pids[i] = fork()) < 0) {
-      perror("fork");
+      error("fork");
       abort();
     } else if (pids[i] == 0) {
       exit(0);
@@ -22,7 +22,6 @@ void scheduler( ctx_t* ctx ) {
   int status;
   pid_t pid;
   while (n > 0) {
-    pid = wait(&status);
     printf("Child with PID %ld exited with status 0x%x.\n", (long)pid, status);
     --n;  // TODO(pts): Remove pid from the pids array.
   }
