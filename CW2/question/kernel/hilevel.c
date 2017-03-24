@@ -4,23 +4,29 @@
 pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  if      ( current == &pcb[ 0 ]) {
-    memcpy( &pcb[ 0 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_3
-    memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
-    current = &pcb[ 1 ];
-  }
-  else if ( current == &pcb[ 1 ]) {
-    memcpy( &pcb[ 1 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_4
-    memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_5
-    current = &pcb[ 2 ];
-  }
-  else if ( current == &pcb[ 2 ]) {
-    memcpy( &pcb[ 2 ].ctx, ctx, sizeof( ctx_t ) ); // preserve P_5
-    memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
-    current = &pcb[ 0 ];
+  pid_t pids[3];
+  int i;
+  int n = 3;
+
+  /* Start children. */
+  for (i = 0; i < n; ++i) {
+    if ((pids[i] = fork()) < 0) {
+      perror("fork");
+      abort();
+    } else if (pids[i] == 0) {
+      DoWorkInChild();
+      exit(0);
+    }
   }
 
-  return;
+  /* Wait for children to exit. */
+  int status;
+  pid_t pid;
+  while (n > 0) {
+    pid = wait(&status);
+    printf("Child with PID %ld exited with status 0x%x.\n", (long)pid, status);
+    --n;  // TODO(pts): Remove pid from the pids array.
+  }
 }
 
 extern void     main_P3();
