@@ -5,9 +5,10 @@ pcb_t pcb[ 3 ], *current = NULL;
 void scheduler( ctx_t* ctx ) {
 
   if (fork()) {
-    memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
-    memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
-    memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+    //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
+    //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
+    //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+    PL011_putc( UART0, 'Fork Success', 20);
     }
   else {
     PL011_putc( UART0, 'F', 1);
