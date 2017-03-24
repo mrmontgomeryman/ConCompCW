@@ -13,10 +13,9 @@ void scheduler( ctx_t* ctx ) {
 
        int    i;
        char   buf[BUF_SIZE];
-       int    pid;
 
        fork();
-       pid = getpid();
+       pid_t = getpid();
        for (i = 1; i <= MAX_COUNT; i++) {
             sprintf(buf, "This line is from pid %d, value = %d\n", pid, i);
             write(1, buf, strlen(buf));
