@@ -44,7 +44,7 @@ generality, realism, or style of a solution.
 [X] Stage 1 : pre-emptive operating system kernel                    ( 30%)
 
     Stage 2 : close generalisations and enhancements
-[?]           - fork, exec and exit system calls                     ( 15%)
+[*]           - fork, exec and exit system calls                     ( 15%)
 [?]           - priority based scheduler                             ( 10%)
 [?]           - Inter-Process Communication (IPC)                    ( 15%)
 
