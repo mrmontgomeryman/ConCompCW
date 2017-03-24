@@ -3,7 +3,7 @@
 pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  int pid
+  int pid;
   pid = fork();
 
   if (pid == 1) {
