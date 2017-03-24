@@ -14,7 +14,7 @@ void scheduler( ctx_t* ctx ) {
     if ((pids[i] = fork()) < 0) {
       //error("fork");
       //abort();
-      printf("success \n" 10);
+      printf("success \n", 10);
     } else if (pids[i] == 0) {
       exit(0);
     }
