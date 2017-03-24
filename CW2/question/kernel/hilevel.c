@@ -4,6 +4,9 @@ pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
 
+#define   MAX_COUNT  200
+#define   BUF_SIZE   100
+
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
