@@ -13,6 +13,7 @@ void scheduler( ctx_t* ctx ) {
   else {
     PL011_putc( UART0, 'F', 1);
   }
+  return;
 }
 
 
