@@ -3,15 +3,15 @@
 pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  pid_t = fork();
+  pcb_t = fork();
 
-  if (pid_t == 1) {
+  if (pcb.pid == 1) {
     memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
   }
-  else if (pid_t == 2) {
+  else if (pcb.pid == 2) {
     memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
   }
-  else if (pid_t == 3) {
+  else if (pcb.pid == 3) {
     memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
   }
   }
