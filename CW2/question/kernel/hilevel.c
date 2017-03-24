@@ -3,9 +3,9 @@
 pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  int pid;
-  pid = fork();
-  
+
+  if (fork()) {
+
   if (pid == 1) {
     memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
   }
@@ -14,6 +14,10 @@ void scheduler( ctx_t* ctx ) {
   }
   else if (pid == 3) {
     memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+  }
+}
+  else {
+    PL011_putc( UART0, 'F', 1);
   }
 }
 
