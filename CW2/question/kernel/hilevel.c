@@ -8,7 +8,7 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
-    printf("Fork Success\n");
+    PL011_putc( UART0, 'A', 1);
     }
   else {
     PL011_putc( UART0, 'F', 1);
