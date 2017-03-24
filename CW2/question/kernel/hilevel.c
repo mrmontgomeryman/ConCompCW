@@ -14,7 +14,6 @@ void scheduler( ctx_t* ctx ) {
       perror("fork");
       abort();
     } else if (pids[i] == 0) {
-      DoWorkInChild();
       exit(0);
     }
   }
