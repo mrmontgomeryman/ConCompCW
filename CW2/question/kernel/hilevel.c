@@ -3,29 +3,19 @@
 pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
-  pid_t pids[3];
-  int i;
-  int n = 3;
+  pid = fork();
 
-  /* Start children. */
-  for (i = 0; i < n; ++i) {
-    if ((pids[i] = fork()) < 0) {
-      //error("fork");
-      //abort();
-      printf("success \n", 10);
-    } else if (pids[i] == 0) {
-      exit(0);
-    }
+  if (pid == 1) {
+    memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
+  }
+  else if (pid == 2) {
+    memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
+  }
+  else if (pid == 3) {
+    memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+  }
   }
 
-  /* Wait for children to exit. */
-  int status;
-  pid_t pid;
-  while (n > 0) {
-    printf("Child with PID %ld exited with status 0x%x.\n", (long)pid, status);
-    --n;  // TODO(pts): Remove pid from the pids array.
-  }
-}
 
 extern void     main_P3();
 extern uint32_t tos_P3;
