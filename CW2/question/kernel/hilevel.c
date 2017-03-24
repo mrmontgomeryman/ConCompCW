@@ -4,15 +4,20 @@ pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
 
-  if (fork()) {
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
-    PL011_putc( UART0, 'A', 1);
-    }
-  else {
-    PL011_putc( UART0, 'F', 1);
-  }
+
+       pid_t  pid;
+       int    i;
+       char   buf[BUF_SIZE];
+
+       fork();
+       pid = getpid();
+       for (i = 1; i <= MAX_COUNT; i++) {
+            sprintf(buf, "This line is from pid %d, value = %d\n", pid, i);
+            write(1, buf, strlen(buf));
+       }
   return;
 }
 
