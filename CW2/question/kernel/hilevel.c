@@ -17,7 +17,7 @@ void scheduler( ctx_t* ctx ) {
   }
   }
   else {
-    PL011_putc( UART0, 'fork failed', true );
+    PL011_putc( UART0, 'fork failed', 12);
   }
 
 
