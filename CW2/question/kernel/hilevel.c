@@ -1,6 +1,4 @@
 #include "hilevel.h"
-#include "libc.c"
-#include <stdio.h>
 
 pcb_t pcb[ 3 ], *current = NULL;
 
