@@ -7,14 +7,19 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+char string1[6];
+char string2[6];
+
+strcpy(str1, "fork S");
+strcpy(str2, "fork F");
 
         pid_t pid;
         pid= fork();
         if (pid == 0) {
-          printf("fork success\n");
+          puts(string1);
         }
         else {
-          printf("fork failed\n");
+          puts(string2);
         }
   return;
 }
