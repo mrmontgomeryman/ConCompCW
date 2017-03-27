@@ -12,7 +12,7 @@ void scheduler( ctx_t* ctx ) {
         pid= fork();
         if (pid == 0) {
           puts( "fork success", 12 );
-        };
+        }
         else {
           puts( "fork failed", 11 );
         }
