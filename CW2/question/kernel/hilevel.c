@@ -4,6 +4,8 @@ pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
 
+    memcpy( ctx, &pcb[ 3 ].ctx, sizeof( ctx_t ) ); // start console
+
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
@@ -14,19 +16,18 @@ void scheduler( ctx_t* ctx ) {
   return;
 }
 
-
+extern void     main_console();
+extern uint32_t tos_console;
 extern void     main_P3();
 extern uint32_t tos_P3;
 extern void     main_P4();
 extern uint32_t tos_P4;
 extern void     main_P5();
 extern uint32_t tos_P5;
-extern void     main_console();
-extern uint32_t tos_console;
 
 void hilevel_handler_rst(  ctx_t* ctx              ) {
   /* Initialise PCBs representing processes stemming from execution of
-   * the two user programs.  Note in each case that
+   * the three user programs.  Note in each case that
    *
    * - the CPSR value of 0x50 means the processor is switched into USR
    *   mode, with IRQ interrupts enabled, and

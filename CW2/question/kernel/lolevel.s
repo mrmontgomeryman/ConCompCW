@@ -13,7 +13,7 @@ lolevel_handler_rst: bl    int_init                @ initialise interrupt vector
                      ldr   sp, =tos_irq            @ initialise IRQ mode stack
                      msr   cpsr, #0xD3             @ enter SVC mode with IRQ and FIQ interrupts disabled
                      ldr   sp, =tos_svc            @ initialise SVC mode stack
-                     msr   cpsr, #0xD4             @ enter SVC mode with IRQ and FIQ interrupts disabled
+                     msr   cpsr, #0xD4             @ enter console mode with IRQ and FIQ interrupts disabled
                      ldr   sp, =tos_console        @ initialise console stack
 
                      sub   sp, sp, #68             @ initialise dummy context
