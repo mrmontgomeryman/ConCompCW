@@ -4,8 +4,6 @@ pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
 
-    memcpy( ctx, &pcb[ 3 ].ctx, sizeof( ctx_t ) ); // start console
-
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
@@ -73,7 +71,7 @@ void hilevel_handler_rst(  ctx_t* ctx              ) {
   /* Once the PCBs are initialised, we (arbitrarily) select one to be
    * restored (i.e., executed) when the function then returns.
    */
-
+  memcpy( ctx, &pcb[ 3 ].ctx, sizeof( ctx_t ) ); // start console
   current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
   return;
