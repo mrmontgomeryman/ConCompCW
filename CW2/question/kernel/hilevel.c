@@ -10,8 +10,8 @@ void scheduler( ctx_t* ctx ) {
 char string1[6];
 char string2[6];
 
-strcpy(str1, "fork S");
-strcpy(str2, "fork F");
+strcpy(string1, "fork S");
+strcpy(string2, "fork F");
 
         pid_t pid;
         pid= fork();
