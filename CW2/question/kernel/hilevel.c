@@ -11,15 +11,9 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
 
-       int    i;
-       char   buf[BUF_SIZE];
-
-       fork();
-       pid_t = getpid();
-       for (i = 1; i <= MAX_COUNT; i++) {
-            sprintf(buf, "This line is from pid %d, value = %d\n", pid, i);
-            write(1, buf, strlen(buf));
-       }
+        pid_t pid1, pid2, pid3;
+        pid1=0, pid2=0, pid3=0;
+        pid1= fork(); /* A */
   return;
 }
 
