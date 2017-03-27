@@ -71,8 +71,8 @@ void hilevel_handler_rst(  ctx_t* ctx              ) {
   /* Once the PCBs are initialised, we (arbitrarily) select one to be
    * restored (i.e., executed) when the function then returns.
    */
-  memcpy( ctx, &pcb[ 3 ].ctx, sizeof( ctx_t ) ); // start console
-  current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
+  current = &pcb[ 3 ]; memcpy( ctx, &pcb[ 3 ].ctx, sizeof( ctx_t ) ); // start console
+  //current = &pcb[ 0 ]; memcpy( ctx, &current->ctx, sizeof( ctx_t ) );
 
   return;
 }
