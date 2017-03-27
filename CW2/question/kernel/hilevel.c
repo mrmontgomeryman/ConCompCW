@@ -30,6 +30,8 @@ extern void     main_P4();
 extern uint32_t tos_P4;
 extern void     main_P5();
 extern uint32_t tos_P5;
+extern void     main_console();
+extern uint32_t tos_console;
 
 void hilevel_handler_rst(  ctx_t* ctx              ) {
   /* Initialise PCBs representing processes stemming from execution of
