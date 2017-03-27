@@ -4,9 +4,6 @@ pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
 
-#define   MAX_COUNT  200
-#define   BUF_SIZE   100
-
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
@@ -36,6 +33,12 @@ void hilevel_handler_rst(  ctx_t* ctx              ) {
    * - the PC and SP values matche the entry point and top of stack.
    */
 
+  memset( &pcb[ 3 ], 0, sizeof( pcb_t ) );
+  pcb[ 3 ].pid      = 4;
+  pcb[ 3 ].ctx.cpsr = 0x50;
+  pcb[ 3 ].ctx.pc   = ( uint32_t )( &main_console );
+  pcb[ 3 ].ctx.sp   = ( uint32_t )( &tos_console  );
+
   memset( &pcb[ 0 ], 0, sizeof( pcb_t ) );
   pcb[ 0 ].pid      = 1;
   pcb[ 0 ].ctx.cpsr = 0x50;
@@ -53,12 +56,6 @@ void hilevel_handler_rst(  ctx_t* ctx              ) {
   pcb[ 2 ].ctx.cpsr = 0x50;
   pcb[ 2 ].ctx.pc   = ( uint32_t )( &main_P5 );
   pcb[ 2 ].ctx.sp   = ( uint32_t )( &tos_P5  );
-
-  memset( &pcb[ 3 ], 0, sizeof( pcb_t ) );
-  pcb[ 3 ].pid      = 4;
-  pcb[ 3 ].ctx.cpsr = 0x50;
-  pcb[ 3 ].ctx.pc   = ( uint32_t )( &main_console );
-  pcb[ 3 ].ctx.sp   = ( uint32_t )( &tos_console  );
 
   TIMER0->Timer1Load  = 0x00100000; // select period = 2^20 ticks ~= 1 sec
   TIMER0->Timer1Ctrl  = 0x00000002; // select 32-bit   timer
