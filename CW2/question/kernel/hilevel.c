@@ -8,7 +8,7 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
 
-    if (pid_t pid = fork()) {
+    if (pid = fork()) {
       memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     }
     else {
