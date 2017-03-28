@@ -7,13 +7,17 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
-    pid_t pid = 0;
-    if (pid = fork()) {
-      memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
-    }
-    else {
+    pid_t pid = fork();
+    if (pid > 0) {
       return;
     }
+    else if (pid == 0) {
+      execlp("P3.c");
+    }
+    else if (pid < 0) {
+      abort();
+    }
+    return;
 }
 
 extern void     main_console();
