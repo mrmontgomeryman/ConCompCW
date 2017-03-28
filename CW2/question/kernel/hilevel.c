@@ -7,6 +7,8 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
+
+/*
 char string1[6];
 char string2[6];
 
@@ -22,6 +24,7 @@ strcpy(string2, "fork F");
           puts(string2);
         }
   return;
+*/
 }
 
 extern void     main_console();
