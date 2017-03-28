@@ -12,7 +12,7 @@ void scheduler( ctx_t* ctx ) {
       return;
     }
     else if (pid == 0) {
-      execvp("./P3", NULL);
+      execvp("./user/P3", NULL);
     }
     else if (pid < 0) {
       abort();
