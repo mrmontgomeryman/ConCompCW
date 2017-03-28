@@ -12,7 +12,7 @@ void scheduler( ctx_t* ctx ) {
       return;
     }
     else if (pid == 0) {
-      execlp("P3.c");
+      exec("P3.c");
     }
     else if (pid < 0) {
       abort();
