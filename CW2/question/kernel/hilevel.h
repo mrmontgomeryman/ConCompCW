@@ -11,7 +11,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
-#include <libc.h>
 
 // Include functionality relating to the platform.
 
