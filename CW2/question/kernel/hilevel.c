@@ -8,23 +8,12 @@ void scheduler( ctx_t* ctx ) {
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
 
-/*
-char string1[6];
-char string2[6];
-
-strcpy(string1, "fork S");
-strcpy(string2, "fork F");
-
-        pid_t pid;
-        pid= fork();
-        if (pid == 0) {
-          puts(string1);
-        }
-        else {
-          puts(string2);
-        }
-  return;
-*/
+    if (pid_t pid = fork()) {
+      memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
+    }
+    else {
+      return;
+    }
 }
 
 extern void     main_console();
