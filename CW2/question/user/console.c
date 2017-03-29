@@ -62,12 +62,6 @@ void main_console() {
 
     if     ( 0 == strcmp( p, "fork" ) ) {
       pid_t pid = fork();
-      if (pid==0) {
-        puts("child of fork worked\n");
-      }
-        else if (pid > 0 ) {
-          puts("parent of fork worked\n");
-        }
 
       if( 0 == pid ) {
         void* addr = load( strtok( NULL, " " ) );
