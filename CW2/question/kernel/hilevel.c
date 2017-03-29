@@ -4,6 +4,8 @@ pcb_t pcb[ 3 ], *current = NULL;
 
 void scheduler( ctx_t* ctx ) {
 
+    pid_t pid;
+
     //memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     //memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
     //memcpy( ctx, &pcb[ 2 ].ctx, sizeof( ctx_t ) ); // restore  P_2
@@ -11,7 +13,7 @@ void scheduler( ctx_t* ctx ) {
     if (pid > 0) {
       return;
     }
-    else if (pid == 0) {
+    else if (pid = fork) {
       execvp("./user/P3", NULL);
     }
     else if (pid < 0) {
