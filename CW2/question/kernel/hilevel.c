@@ -10,7 +10,7 @@ void scheduler( ctx_t* ctx ) {
     pid_t pid;
     pid = fork();
 
-    if ((pid==0){
+    if (pid==0) {
       memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     }
       else if (pid > 0 ) {
