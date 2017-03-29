@@ -11,10 +11,10 @@ void scheduler( ctx_t* ctx ) {
     pid = fork();
 
     if (pid==0) {
-      printf("child of fork worked\n");
+      puts("child of fork worked\n");
     }
       else if (pid > 0 ) {
-        printf("parent of fork worked\n");
+        puts("parent of fork worked\n");
       }
     /*
     pid_t pid = fork();
