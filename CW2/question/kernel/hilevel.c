@@ -11,10 +11,10 @@ void scheduler( ctx_t* ctx ) {
     pid = fork();
 
     if (pid==0) {
-      memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
+      printf("child of fork worked\n");
     }
       else if (pid > 0 ) {
-        memcpy( ctx, &pcb[ 1 ].ctx, sizeof( ctx_t ) ); // restore  P_4
+        printf("parent of fork worked\n");
       }
     /*
     pid_t pid = fork();
