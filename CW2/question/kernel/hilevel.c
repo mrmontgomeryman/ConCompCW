@@ -12,7 +12,7 @@ void scheduler( ctx_t* ctx ) {
       return;
     }
     else if (pid == 0) {
-      execvp("./user/P3", NULL);
+      memcpy( ctx, &pcb[ 0 ].ctx, sizeof( ctx_t ) ); // restore  P_3
     }
     else if (pid < 0) {
       abort();
