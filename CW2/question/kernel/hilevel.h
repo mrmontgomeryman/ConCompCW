@@ -22,7 +22,6 @@
 
 #include "lolevel.h"
 #include     "int.h"
-#include "libc.h"
 
 /* The kernel source code is made simpler via three type definitions:
  *
