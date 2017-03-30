@@ -68,6 +68,11 @@ void main_console() {
         exec( addr );
         exec("P3.c");
       }
+      if( 0 < pid ) {
+        void* addr = load( strtok( NULL, " " ) );
+        exec( addr );
+        exec("P3.c");
+      }
     }
     else if( 0 == strcmp( p, "kill" ) ) {
       pid_t pid = atoi( strtok( NULL, " " ) );
