@@ -66,13 +66,11 @@ void main_console() {
       if( 0 == pid ) {
         void* addr = load( strtok( NULL, " " ) );
         exec( addr );
-        puts("child of fork worked\n");
       }
     }
     else if( 0 == strcmp( p, "kill" ) ) {
       pid_t pid = atoi( strtok( NULL, " " ) );
       int   s   = atoi( strtok( NULL, " " ) );
-      puts("parent of fork worked\n");
 
       kill( pid, s );
     }
