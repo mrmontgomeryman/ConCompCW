@@ -1,8 +1,6 @@
 #ifndef __CONSOLE_H
 #define __CONSOLE_H
 
-#define _GNU_SOURCE
-
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
