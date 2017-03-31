@@ -62,13 +62,18 @@ void main_console() {
 
     if     ( 0 == strcmp( p, "fork" ) ) {
       pid_t pid = fork();
-    if     ( 0 == strcmp( p, "fork P3" ) ) {
-      pid_t pid = fork();
-      exec(main_P3);
 
       if( 0 == pid ) {
         void* addr = load( strtok( NULL, " " ) );
         exec( addr );
+      }
+    }
+    if     ( 0 == strcmp( p, "fork P3" ) ) {
+      pid_t pid = fork();
+
+      if( 0 == pid ) {
+        void* addr = load( strtok( NULL, " " ) );
+        exec( main_P3 );
       }
     }
     else if( 0 == strcmp( p, "kill" ) ) {
