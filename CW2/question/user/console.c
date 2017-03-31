@@ -64,7 +64,7 @@ void main_console() {
       pid_t pid = fork();
 
       if( 0 == pid ) {
-        void* addr = load( strtok( NULL, " " ) );
+        void* main_P3 = load( strtok( NULL, " " ) );
         exec( main_P3 );
       }
     }
