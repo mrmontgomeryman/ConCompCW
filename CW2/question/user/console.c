@@ -64,8 +64,8 @@ void main_console() {
       pid_t pid = fork();
 
       if( 0 == pid ) {
-        void* 0 = load( strtok( NULL, " " ) );
-        exec( &pcb[0] );
+        void* addr = load( strtok( NULL, " " ) );
+        exec( addr );
       }
     }
     else if( 0 == strcmp( p, "kill" ) ) {
